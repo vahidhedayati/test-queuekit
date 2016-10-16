@@ -103,7 +103,7 @@ log4j.main = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 	
-	info   'grails.app.services.org.grails.plugin.queuekit.examples'
+	// info   'grails.app.services.org.grails.plugin.queuekit.examples'
 	
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -125,16 +125,11 @@ log4j.main = {
 queuekit {
 	checkQueueOnStart=true
 	keepAliveTime=300
-	
-	corePoolSize=1
-	
+	corePoolSize=3
 	maximumPoolSize=3
-	
 	maxQueue=100
-	preserveThreads = 1
-	
-	preservePriority = org.grails.plugin.queuekit.priority.Priority.MEDIUM
-
+	preserveThreads=1
+	preservePriority=org.grails.plugin.queuekit.priority.Priority.MEDIUM
 	reportDownloadPath='/tmp'
 	removalDay=5
 	removalDownloadedDay=1
@@ -149,34 +144,31 @@ queuekit {
 	]
 	defaultReportsQueue=org.grails.plugin.queuekit.ReportsQueue.ENHANCEDPRIORITYBLOCKING
 	durationThreshHold = [
-		[hours: 1, minutes: 10, seconds: 2, color: 'blue'],
-		[minutes: 1, seconds: 5, color: 'orange'],
-		[minutes: 1, seconds: 9, color: '#FF86E3'],
-		[minutes: 1, seconds: 10, color: '#C4ABFE'],
-		[seconds: 1, color: '#9999CC'],
-		[seconds: 12, color: '#FFFFAA'],
-		[seconds: 10, color: '#E3E0FA'],
-		[seconds: 25, color: '#52FF20'],
-		[seconds: 20, color: '#F49AC2'],
-		[seconds: 50, color: '#FF4848'],
-		[seconds: 35, color: '#9999CC']
+			[hours: 1, minutes: 10, seconds: 2, color: 'blue'],
+			[minutes: 1, seconds: 5, color: 'orange'],
+			[minutes: 1, seconds: 9, color: '#FF86E3'],
+			[minutes: 1, seconds: 10, color: '#C4ABFE'],
+			[seconds: 1, color: '#9999CC'],
+			[seconds: 12, color: '#FFFFAA'],
+			[seconds: 10, color: '#E3E0FA'],
+			[seconds: 25, color: '#52FF20'],
+			[seconds: 20, color: '#F49AC2'],
+			[seconds: 50, color: '#FF4848'],
+			[seconds: 35, color: '#9999CC']
 	]
 	killLongRunningTasks=300
-	
+
 	defaultComparator=false
-	
 	useEmergencyExecutor=false
-	
-	
-	manualDownloadEnabled=true
-	
+	manualDownloadEnabled=false
 	deleteEntryOnDelete=false
-	
+
 	//forceFloodControl=0
 	//limitUserBelowPriority=0
 	//limitUserAbovePriority=0
 	disableExamples=false
-	standardRunnable=true
-	
+	standardRunnable=false
+	disableUserServicePriorityCheck=false
+
 	//disableUserServicePriorityCheck=false
 }

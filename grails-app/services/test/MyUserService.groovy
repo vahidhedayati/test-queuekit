@@ -12,7 +12,7 @@ class MyUserService extends QueuekitUserService {
 	 */
 	@Override
 	Long getCurrentuser() {
-		return 2L
+		return 1L
 	}
 	
 	/*

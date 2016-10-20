@@ -106,46 +106,42 @@ class MyUserService extends QueuekitUserService {
 	 *
 	 */
 	Priority checkReportPriority(Priority priority,params) {
-		//println "params ${params} ${params.fromDate} vs ${params.toDate} vs ${params.toDate.getClass()}"
 		if (params.fromDate && params.toDate) {
 			Date toDate = parseDate(params.toDate)
 			Date fromDate = parseDate(params.fromDate)
 			int difference = toDate && fromDate ? (toDate - fromDate) : null
 			if (difference||difference==0) {
 				if (difference <= 1) {
-					//println "-block 1"
 					// 1 day everything becomes HIGH priority
 					priority = Priority.HIGH
 				} else if  (difference >= 1 && difference <= 8) {
-					//println "-block 2"
-					
 					if (priority == Priority.HIGHEST) {
 						priority = Priority.HIGH
 					} else if (priority >= Priority.MEDIUM) {
-						priority = priority.value--
+						priority = priority.value.previous()
 					}
 				} else if  (difference >= 8 && difference <= 31) {
 					if (priority <= Priority.HIGH) {
 						priority = Priority.MEDIUM
 					} else if (priority >= Priority.LOW) {
-						priority = priority.MEDIUM
+						priority = priority.next()
 					}
 				} else if  (difference >= 31 && difference <= 186) {
 					if (priority >= Priority.MEDIUM && priority <= Priority.HIGHEST) {
-						priority = priority.value--
+						priority = priority.next()
 					} else if (priority >= Priority.LOW) {
-						priority = Priority.MEDIUM
+						priority = priority.previous()
 					}
 				} else if  (difference >= 186) {
-					if (priority <= Priority.HIGH) {
-						priority = priority.value--
-						
+					if (priority <= Priority.LOWEST) {
+						priority = priority.previous()
 					} else if (priority >= Priority.LOW) {
-						priority = Priority.MEDIUM
+						priority = priority.next()
 					}
 				}
 			}
-		}
+			log.debug "priority is now ${priority} was previously ${priority} difference of date : ${difference}"
+		}		
 		return priority
 	}
 	

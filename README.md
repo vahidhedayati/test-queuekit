@@ -1,4 +1,7 @@
-Test site running  Grails 2.4.4 testing queuekit plugin
-=========
+Grails queuekit plugin test site
+============
 
-Logging information - you can enable logs of running job take a look at Config.groovy there is 1 line added commented out
+### Running on grails 2.4.4
+
+Plugin found here: https://github.com/vahidhedayati/grails-queuekit-plugin/
+

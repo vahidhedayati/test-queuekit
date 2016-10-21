@@ -171,4 +171,7 @@ queuekit {
 	disableUserServicePriorityCheck=false
 
 	//disableUserServicePriorityCheck=false
+	hideQueuePriority=false
+	hideQueueType=false
+	
 }
